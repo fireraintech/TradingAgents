@@ -1,3 +1,4 @@
+import os
 import chromadb
 from chromadb.config import Settings
 from openai import OpenAI
@@ -5,11 +6,27 @@ from openai import OpenAI
 
 class FinancialSituationMemory:
     def __init__(self, name, config):
-        if config["backend_url"] == "http://localhost:11434/v1":
+        backend_url = config.get("backend_url", "")
+        
+        self.llm_provider = config.get("llm_provider", "openai").lower()
+        
+        if self.llm_provider == "ollama":
             self.embedding = "nomic-embed-text"
+            self.client = OpenAI(
+                base_url=backend_url,
+                api_key=os.environ.get("OLLAMA_API_KEY")
+            )
+        elif self.llm_provider == "google":
+            self.embedding = "text-embedding-004"
+            # Use OpenAI compatibility endpoint for Gemini
+            # If the user provided a generic google URL, switch to the openai-compat one
+            self.client = OpenAI(
+                base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+                api_key=os.environ.get("GOOGLE_API_KEY")
+            )
         else:
             self.embedding = "text-embedding-3-small"
-        self.client = OpenAI(base_url=config["backend_url"])
+            self.client = OpenAI(base_url=backend_url)
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
         self.situation_collection = self.chroma_client.create_collection(name=name)
 
@@ -69,7 +86,9 @@ class FinancialSituationMemory:
 
 if __name__ == "__main__":
     # Example usage
-    matcher = FinancialSituationMemory()
+    # Example usage
+    # Default to localhost/ollama for testing if run directly
+    matcher = FinancialSituationMemory("test_memory", {"backend_url": "http://localhost:11434/v1"})
 
     # Example data
     example_data = [
