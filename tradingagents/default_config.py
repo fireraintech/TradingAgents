@@ -18,7 +18,7 @@ DEFAULT_CONFIG = {
     "llm_provider": "google",
     "deep_think_llm": "gemini-2.5-flash",
     "quick_think_llm": "gemini-2.5-flash",
-    "backend_url": "https://generativelanguage.googleapis.com/v1",
+    "backend_url": "https://generativelanguage.googleapis.com/v1beta",
     
     # "llm_provider": "ollama",
     # "deep_think_llm": "huihui_ai/deepseek-r1-abliterated:14b",

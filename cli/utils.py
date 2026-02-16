@@ -142,10 +142,10 @@ def select_shallow_thinking_agent(provider) -> str:
             ("Claude Sonnet 4.5 - Advanced reasoning and coding", "claude-sonnet-4.5"),
         ],
         "google": [
-            ("Gemini 2.0 Flash-Lite - Cost efficiency and low latency", "gemini-2.0-flash-lite"),
-            ("Gemini 2.0 Flash - Next generation features, speed, and thinking", "gemini-2.0-flash"),
-            ("Gemini 2.5 Flash - Adaptive thinking, cost efficiency", "gemini-2.5-flash"),
-            ("Gemini 3.0 Flash - Next-gen speed and efficiency (Dec 2025)", "gemini-3.0-flash"),
+            ("Gemini 2.5 Flash - Best price-performance, fast and versatile", "gemini-2.5-flash"),
+            ("Gemini 2.5 Flash-Lite - Fastest, optimized for cost and throughput", "gemini-2.5-flash-lite"),
+            ("Gemini 2.0 Flash - Next-gen features and speed", "gemini-2.0-flash"),
+            ("Gemini 1.5 Flash - Stable and cost-effective", "gemini-1.5-flash"),
         ],
         "openrouter": [
             ("Meta: Llama 4 Scout", "meta-llama/llama-4-scout:free"),
@@ -209,12 +209,10 @@ def select_deep_thinking_agent(provider) -> str:
             ("Claude Opus 4.5 - Most powerful agentic model (Nov 2025)", "claude-opus-4.5"),
         ],
         "google": [
-            ("Gemini 2.0 Flash-Lite - Cost efficiency and low latency", "gemini-2.0-flash-lite"),
-            ("Gemini 2.0 Flash - Next generation features, speed, and thinking", "gemini-2.0-flash"),
-            ("Gemini 2.5 Flash - Adaptive thinking, cost efficiency", "gemini-2.5-flash"),
-            ("Gemini 2.5 Pro", "gemini-2.5-pro"),
-            ("Gemini 3.0 Flash - Next-gen speed and efficiency (Dec 2025)", "gemini-3.0-flash"),
-            ("Gemini 3.0 Pro - Latest flagship multimodal model (Nov 2025)", "gemini-3.0-pro"),
+            ("Gemini 2.5 Pro - State-of-the-art thinking and reasoning", "gemini-2.5-pro"),
+            ("Gemini 2.5 Flash - Fast with thinking capabilities", "gemini-2.5-flash"),
+            ("Gemini 2.0 Flash - Next-gen with experimental thinking", "gemini-2.0-flash"),
+            ("Gemini 1.5 Pro - Stable high-capability model", "gemini-1.5-pro"),
         ],
         "openrouter": [
             ("Meta: Llama 4 Maverick - Advanced reasoning and assistance", "meta-llama/llama-4-maverick:free"),
