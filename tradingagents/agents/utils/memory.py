@@ -17,13 +17,10 @@ class FinancialSituationMemory:
                 api_key=os.environ.get("OLLAMA_API_KEY")
             )
         elif self.llm_provider == "google":
-            self.embedding = "text-embedding-004"
-            # Use OpenAI compatibility endpoint for Gemini
-            # If the user provided a generic google URL, switch to the openai-compat one
-            self.client = OpenAI(
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-                api_key=os.environ.get("GOOGLE_API_KEY")
-            )
+            self.embedding = "models/gemini-embedding-001"
+            from google import genai as google_genai
+            self._google_client = google_genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+            self.client = None
         else:
             self.embedding = "text-embedding-3-small"
             self.client = OpenAI(base_url=backend_url)
@@ -31,8 +28,14 @@ class FinancialSituationMemory:
         self.situation_collection = self.chroma_client.create_collection(name=name)
 
     def get_embedding(self, text):
-        """Get OpenAI embedding for a text"""
-        
+        """Get embedding for a text"""
+        if self.llm_provider == "google":
+            result = self._google_client.models.embed_content(
+                model=self.embedding,
+                contents=text,
+            )
+            return result.embeddings[0].values
+
         response = self.client.embeddings.create(
             model=self.embedding, input=text
         )

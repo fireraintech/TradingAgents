@@ -5,7 +5,12 @@
       "Bash(npx:*)",
       "Bash(node --version:*)",
       "Bash(claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp@latest)",
-      "Bash(claude mcp add:*)"
+      "Bash(claude mcp add:*)",
+      "Bash(python:*)",
+      "Bash(/opt/anaconda3/envs/tradingagents/bin/pip install:*)",
+      "Bash(conda run:*)",
+      "Bash(source:*)",
+      "Bash(conda activate:*)"
     ]
   }
 }
